@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  webserver:
+    build: .
+    image: wh1sperdiyu/php-74-apache-xdebug-30
+    container_name: php-74-apache-xdebug-30
+    ports:
+      - "50080:80"
+      # - "9001:9001" # for dbgpProxy
+    volumes:
+      - ./html:/var/www/html
+    environment:
+      # Xdebug 2
+      # XDEBUG_CONFIG: "remote_handler=dbgp remote_host=host.docker.internal idekey=PHPSTORM" 
+      # Xdebug 3
+      XDEBUG_CONFIG: "remote_handler=dbgp client_host=host.docker.internal" 
+      XDEBUG_SESSION: "PHPSTORM"
